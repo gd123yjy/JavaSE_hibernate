@@ -4,6 +4,8 @@ import com.bean.Student;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -21,7 +23,11 @@ public class DBCreator {
         Student student = new Student();
         student.setNumber("2012006");
         student.setName("王五");
-        student.setBirthday(new Date(2002,10,6));
+        try {
+            student.setBirthday(new SimpleDateFormat("yyyy-MM-dd").parse("2002-10-06"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         student.setMath(98);
         student.setEnglish(100);
         HibernateLoader.getSession().save(student);

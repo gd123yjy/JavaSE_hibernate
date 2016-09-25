@@ -1,5 +1,7 @@
 package com.server;
 
+import com.service.BussinessLogicService;
+import com.service.imp.StudentServiceImp;
 import org.hibernate.Hibernate;
 
 import java.io.DataInputStream;
@@ -13,6 +15,7 @@ import java.net.Socket;
 public class MyTask implements Runnable {
 
     private Socket socket;
+    private BussinessLogicService service = new StudentServiceImp();
 
     public MyTask(Socket socket) {
         this.socket = socket;
@@ -28,8 +31,15 @@ public class MyTask implements Runnable {
             while (true) {
                 String str = dis.readUTF();    //从客户机中读数据
                 if (str.equals("end")) break;    //当读到end时，程序终止
+
+                //实现业务逻辑
                 System.out.println(str);
-                dos.writeUTF("Echoing:" + str);    //向客户机中写数据
+                try {
+                    str = service.getStudentInfoByNumber(str);
+                }catch (Exception e){
+                    str = "不存在该学生的信息！";
+                }
+                dos.writeUTF(str);    //向客户机中写数据
             }
             dos.close();
             dis.close();
