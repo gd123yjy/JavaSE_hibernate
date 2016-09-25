@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.bean.Student" table="student" catalog="my_cs_db">
+		<id name="number" type="java.lang.String">
+			<column name="number"></column>
+		</id>
+		<property name="name" type="java.lang.String">
+			<column name="name" length="20" not-null="true"></column>
+		</property>
+		<property name="birthday" type="java.util.Date">
+			<column name="birthday"></column>
+		</property>
+		<property name="math" type="java.lang.Integer">
+			<column name="math" not-null="false"></column>
+		</property>
+		<property name="english" type="java.lang.Integer">
+			<column name="english" not-null="false"></column>
+		</property>
+
+	</class>
+</hibernate-mapping>
