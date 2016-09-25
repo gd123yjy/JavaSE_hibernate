@@ -5,7 +5,7 @@ import java.net.*;
 
 public class tcpClient {
     public static void main(String[] args) throws IOException {
-//建立Socket，服务器在本机的8888端口处进行“侦听”
+/*//建立Socket，服务器在本机的8888端口处进行“侦听”
         Socket ss = new Socket("127.0.0.1", 8888);
         System.out.println("Socket:" + ss);
         try {
@@ -23,6 +23,8 @@ public class tcpClient {
             dis.close();
         } finally {
             ss.close();
-        }
+        }*/
+        ClientMainFrame clientMainFrame = new ClientMainFrame();
+        clientMainFrame.setVisible(true);
     }
 }
